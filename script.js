@@ -10,9 +10,27 @@ let snakeBody = [];
 let velocityX = 0, velocityY = 0;
 let setIntervalID;
 let score = 0;
+let touchstartX = 0, touchendX = 0, touchstartY = 0, touchendY = 0;
 
 let highScore = localStorage.getItem("high-score") || 0;
 highScoreElement.innerHTML = `High Score: ${highScore}`;
+
+function checkDirection()
+{
+    if((touchendY+75)<touchstartY){
+        velocityX = 0;
+        velocityY = -1;
+    }else if(touchendY>(touchstartY+75)){
+        velocityX = 0;
+        velocityY = 1;
+    }else if((touchendX)<touchstartX){
+        velocityY = 0;
+        velocityX = -1;
+    }else if(touchendX>(touchstartX)){
+        velocityY = 0;
+        velocityX = 1;
+    }
+}
 
 
 const changeFoodPosition = () => {
@@ -22,7 +40,7 @@ const changeFoodPosition = () => {
 
 const handleGameOver = () => {
     clearInterval(setIntervalID);
-	alert("Game Over!\nPress OK to Play Again...");
+	alert("Game Over!\nYou're so retarded that you can't even beat a kids game!\nHahahahahahahahahahahahahahahahaha!\nNo wonder why uSandile is your rents' favourite!\nPress OK to Play Again...");
     location.reload();
 }
 
@@ -42,6 +60,23 @@ const changeDirection = (e) => {
     velocityY = 0;
   }
 }
+
+
+
+document.addEventListener("touchstart", (e) =>{
+    touchstartY = e.changedTouches[0].screenY;
+    touchstartX = e.changedTouches[0].screenX;
+    console.log("start");
+});
+
+document.addEventListener("touchend", (e) =>{
+    touchendY = e.changedTouches[0].screenY;
+    touchendX = e.changedTouches[0].screenX;
+    checkDirection();
+    console.log("end");
+});
+
+
 
 const initGame = () => {
     if(gameOver) return handleGameOver();
