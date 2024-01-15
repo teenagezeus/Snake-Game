@@ -6,7 +6,12 @@
   font-family: 'Open Sans', sans-serif;
 }
 
+html{
+    overscroll-behavior: none;
+}
+
 body{
+    overscroll-behavior: none;
   display: flex;
   align-items: center;
   justify-content: center;
