@@ -32,7 +32,6 @@ body{
 }
 
 .game-details{
-  position: fixed;
   color: #B8C6DC;
   font-size: 1.2rem;
   font-weight: 500;
@@ -41,8 +40,7 @@ body{
   justify-content: space-between;
 }
 
-.play-board{
-  position: fixed;  
+.play-board{ 
   width: 100%;
   height: 100%;
   display: grid;
