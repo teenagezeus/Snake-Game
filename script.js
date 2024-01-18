@@ -2,7 +2,6 @@ const playBoard = document.querySelector(".play-board");
 const scoreElement = document.querySelector(".score");
 const highScoreElement = document.querySelector(".high-score");
 
-
 let gameOver = false;
 let foodX, foodY;
 let snakeX = 5, snakeY = 10;
@@ -11,6 +10,9 @@ let velocityX = 0, velocityY = 0;
 let setIntervalID;
 let score = 0;
 let touchstartX = 0, touchendX = 0, touchstartY = 0, touchendY = 0;
+let sped;
+const slow =document.getElementById("slowBtn");
+
 
 let highScore = localStorage.getItem("high-score") || 0;
 highScoreElement.innerHTML = `High Score: ${highScore}`;
@@ -61,8 +63,6 @@ const changeDirection = (e) => {
   }
 }
 
-
-
 document.addEventListener("touchstart", (e) =>{
     touchstartY = e.changedTouches[0].screenY;
     touchstartX = e.changedTouches[0].screenX;
@@ -75,6 +75,23 @@ document.addEventListener("touchend", (e) =>{
     checkDirection();
     console.log("end");
 });
+
+
+
+    const speed = () => {
+        if(document.getElementsByClassName('btn1').clicked == true)
+        {
+            
+            alert("The monsters gone, it on the run and your daddy's here. beautiful, beautiful, beautiful, beautiful boy.");
+        } else if(document.getElementById('medBtn').clicked == true)
+        {
+            sped =125;
+        }else if(document.getElementById('fastBtn').clicked == true)
+        {
+            sped =50;
+        }
+    }
+
 
 
 
@@ -115,5 +132,5 @@ const initGame = () => {
 	playBoard.innerHTML = htmlMarkup;
 }
 changeFoodPosition();
-setIntervalID = setInterval(initGame,125);
+setIntervalID = setInterval(initGame,localStorage.getItem("slow"));
 document.addEventListener("keydown",changeDirection);
